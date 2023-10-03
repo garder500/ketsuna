@@ -1,6 +1,6 @@
 {
   "name": "ketsuna",
-  "module": "index.ts",
+  "module": "src/index.ts",
   "type": "module",
   "devDependencies": {
     "@types/node": "20.8.2",
@@ -23,6 +23,7 @@
     "react-dom": "latest"
   },
   "scripts": {
+    "start": "bun run src/index.ts",
     "next:dev": "next dev --turbo",
     "next:build": "next build",
     "next:start": "next start",
