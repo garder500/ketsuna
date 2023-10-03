@@ -14,6 +14,13 @@
     "downlevelIteration": true,
     "skipLibCheck": true,
     "jsx": "preserve",
+    "paths": {
+      "@interfaces/*": ["./src/interfaces/*"],
+      "@routes/*" : ["./src/routes/*"],
+      "@bot/*" : ["./src/bot/*"],
+      "@/*": ["./src/*"],
+      "app": ["./src/app.ts"],
+    },
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,

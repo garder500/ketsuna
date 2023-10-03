@@ -14,6 +14,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@elysiajs/static": "^0.7.1",
     "@types/react": "^18.2.24",
     "discord.js": "^14.13.0",
     "drizzle-orm": "^0.28.6",
@@ -23,7 +24,7 @@
     "react-dom": "latest"
   },
   "scripts": {
-    "start": "bun run src/index.ts",
+    "start": "bun run src/index.ts --watch",
     "next:dev": "next dev --turbo",
     "next:build": "next build",
     "next:start": "next start",
