@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import { StyledEngineProvider } from '@mui/material/styles';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -43,7 +48,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <StyledEngineProvider injectFirst>
+          {children}
+        </StyledEngineProvider>
       </body>
     </html>
   );

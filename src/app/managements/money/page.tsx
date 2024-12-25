@@ -1,19 +1,14 @@
-import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
-
 export default function Money() {
     return (
-        <div className="flex flex-col h-screen">
-            <Navbar
-                leftButton={<Button href={"/managements"}>Go Back</Button>}
-                middleLinks={[
-                    { href: "/", label: "Home" },
-                    { href: "/managements", label: "Management" },
-                ]} />
-            <div className="flex flex-col items-center justify-center h-screen">
-                <h1 className="text-4xl font-bold">Money Management</h1>
-                <p className="text-lg mt-4">This is the money management page</p>
+        <>
+        <Navbar />
+        <div className="tw-flex tw-flex-col tw-h-screen">
+            <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-h-screen">
+                <h1 className="tw-text-4xl tw-font-bold">Money Management</h1>
+                <p className="tw-text-lg tw-mt-4">This is the money management page</p>
             </div>
         </div>
+        </>
     );
 }

@@ -14,5 +14,9 @@ export default {
       },
     },
   },
+  corePlugins: {
+    preflight: false,
+  },
+  prefix:"tw-",
   plugins: [],
 } satisfies Config;
