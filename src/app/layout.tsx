@@ -7,6 +7,8 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { StyledEngineProvider } from '@mui/material/styles';
 
+export const runtime = 'nodejs'
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
