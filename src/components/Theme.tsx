@@ -6,23 +6,6 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   colorSchemes: { light: true, dark: true },
-  components: {
-    MuiPopover: {
-      defaultProps: {
-        container: document.body
-      }
-    },
-    MuiPopper: {
-      defaultProps: {
-        container: document.body
-      }
-    },
-    MuiModal: {
-      defaultProps: {
-        container: document.body
-      }
-    }
-  },
 });
 
 export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
