@@ -6,6 +6,10 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   colorSchemes: { light: true, dark: true },
+  palette: {
+    mode: 'dark',
+  },
+
 });
 
 export default function ThemeRegistry({ children }: { children: React.ReactNode }) {

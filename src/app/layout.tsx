@@ -8,6 +8,7 @@ import '@fontsource/roboto/700.css';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import ThemeRegistry from '@/components/Theme';
 
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
