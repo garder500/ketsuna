@@ -5,9 +5,13 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import { StyledEngineProvider } from '@mui/material/styles';
-
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from "@/theme";
 export const runtime = 'nodejs'
+
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -46,12 +50,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <StyledEngineProvider injectFirst>
-          {children}
+        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+          <ThemeProvider theme={theme}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </AppRouterCacheProvider>
         </StyledEngineProvider>
       </body>
     </html>
