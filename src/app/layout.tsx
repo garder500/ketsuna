@@ -1,6 +1,5 @@
 "use client";
 /* eslint-disable @next/next/no-sync-scripts */
-import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import '@fontsource/roboto/300.css';
