@@ -8,8 +8,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Link from 'next/link';
 import { Avatar, Button, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 // import { Turnstile } from '@marsidev/react-turnstile'
-import db from "@/global/database";
-import { User } from '@supabase/supabase-js';
+import { auth } from "@/global/database";
+import { GoogleAuthProvider, User, signInWithPopup } from 'firebase/auth';
 import { AccountCircle } from '@mui/icons-material';
 export default function Navbar() {
   // const [captchaToken, setCaptchaToken] = React.useState<string>()
@@ -18,19 +18,21 @@ export default function Navbar() {
 
 
   React.useEffect(() => {
-      db.auth.getUser().then((user) => {
-        if(user && user.data){
-          setCurrentUser(user.data.user)
-        }
+      auth.onAuthStateChanged((user) => {
+          setCurrentUser(user)
       })
   }, [])
 
   function authenticate() {
-      db.auth.signInWithOAuth({ provider: 'google' })
+    signInWithPopup(auth, new GoogleAuthProvider()).then((result) => {
+      setCurrentUser(result.user)
+    }).catch((error) => {
+      console.error(error)
+    })
   }
 
   function logout() {
-    db.auth.signOut().then(() => {
+    auth.signOut().then(() => {
       setCurrentUser(null)
     });
   }
@@ -63,7 +65,7 @@ export default function Navbar() {
                 color="inherit"
                 onClick={handleMenu}
               >
-                {currentUser.user_metadata.avatar_url ? <Avatar src={currentUser.user_metadata.avatar_url} alt="avatar" className="tw-w-8 tw-h-8 tw-rounded-full" /> : <AccountCircle />}
+                {currentUser.photoURL ? <Avatar src={currentUser.photoURL} alt="avatar" className="tw-w-8 tw-h-8 tw-rounded-full" /> : <AccountCircle />}
               </IconButton>
               <Menu
               id="menu-appbar"
