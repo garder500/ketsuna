@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable @next/next/no-sync-scripts */
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -10,8 +11,9 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import ThemeRegistry from '@/components/Theme';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import Head from "next/head";
-import { getAnalytics, isSupported } from "firebase/analytics";
-import { app } from "@/global/database";
+import { useEffect } from "react";
+import { analytics } from "@/global/database";
+import { logEvent } from "firebase/analytics";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,37 +26,21 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "Ketsuna",
-  description: "The simple and easy to use task management app",
-
-  openGraph: {
-    url: "https://ketsuna.com",
-    title: "Ketsuna",
-    modifiedTime: new Date().toISOString(),
-    authors: ["Jérémy"],
-    siteName: "Ketsuna",
-  },
-  twitter: {
-    site: "@ketsuna",
-    card: "summary_large_image",
-    creator: "@exatombe",
-    title: "Ketsuna",
-    description: "The simple and easy to use task management app",
-  },
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  setTimeout(async() => {
-    const canGatherAnalytics = await isSupported();
-    if (canGatherAnalytics) {
-      getAnalytics(app);
+  useEffect(() => {
+    if (analytics) {
+      logEvent(analytics, 'page_view', {
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: window.location.pathname,
+      });
     }
-  }, 1000);
+  }, []);
+
   return (
     <html lang="fr" suppressHydrationWarning>
       <Head>

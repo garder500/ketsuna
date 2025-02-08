@@ -1,6 +1,28 @@
 import Navbar from "@/components/Navbar";
 import { Button } from "@mui/material";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+    title: "Ketsuna",
+    description: "The simple and easy to use task management app",
+
+    openGraph: {
+      url: "https://ketsuna.com",
+      title: "Ketsuna",
+      modifiedTime: new Date().toISOString(),
+      authors: ["Jérémy"],
+      siteName: "Ketsuna",
+    },
+    twitter: {
+      site: "@ketsuna",
+      card: "summary_large_image",
+      creator: "@exatombe",
+      title: "Ketsuna",
+      description: "The simple and easy to use task management app",
+    },
+  };
+
 export default function Management() {
     return (
         <div className="tw-flex tw-flex-col tw-h-screen">

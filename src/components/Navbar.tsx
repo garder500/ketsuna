@@ -5,9 +5,10 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Link from 'next/link';
 import { Avatar, Button, IconButton, Menu, MenuItem, Typography } from '@mui/material';
-import { auth } from "@/global/database";
+import { analytics, auth } from "@/global/database";
 import { GoogleAuthProvider, User, signInWithPopup } from 'firebase/auth';
 import { AccountCircle } from '@mui/icons-material';
+import { logEvent } from 'firebase/analytics';
 export default function Navbar() {
   // const [captchaToken, setCaptchaToken] = React.useState<string>()
   const [currentUser, setCurrentUser] = React.useState<User | null>(null)
@@ -21,6 +22,11 @@ export default function Navbar() {
   }, [])
 
   function authenticate() {
+    if(analytics) {
+      logEvent(analytics, 'login', {
+        method: 'google'
+      })
+    }
     signInWithPopup(auth, new GoogleAuthProvider()).then((result) => {
       setCurrentUser(result.user)
     }).catch((error) => {
