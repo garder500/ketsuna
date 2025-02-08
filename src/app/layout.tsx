@@ -10,7 +10,8 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import ThemeRegistry from '@/components/Theme';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import Head from "next/head";
-
+import { getAnalytics, isSupported } from "firebase/analytics";
+import { app } from "@/global/database";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -48,6 +49,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  setTimeout(async() => {
+    const canGatherAnalytics = await isSupported();
+    if (canGatherAnalytics) {
+      getAnalytics(app);
+    }
+  }, 1000);
   return (
     <html lang="fr" suppressHydrationWarning>
       <Head>
