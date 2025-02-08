@@ -3,11 +3,8 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-// import IconButton from '@mui/material/IconButton';
-// import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 import { Avatar, Button, IconButton, Menu, MenuItem, Typography } from '@mui/material';
-// import { Turnstile } from '@marsidev/react-turnstile'
 import { auth } from "@/global/database";
 import { GoogleAuthProvider, User, signInWithPopup } from 'firebase/auth';
 import { AccountCircle } from '@mui/icons-material';
